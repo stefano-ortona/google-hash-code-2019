@@ -1,14 +1,13 @@
 package com.ortona.stefano.hashcode_2019;
 
 import com.ortona.stefano.hashcode_2019.model.Photo;
+import com.ortona.stefano.hashcode_2019.model.ProblemContainer;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class UtilsFile {
 
@@ -24,6 +23,7 @@ public class UtilsFile {
     private char[][] data;
     private int photoAmount;
     private List<Photo> photos;
+    private ProblemContainer problemContainer;
 
     // 2. generate setters and getters for header and data
     public void setHeader(int[] header) {
@@ -58,6 +58,13 @@ public class UtilsFile {
         this.photos = photos;
     }
 
+    public ProblemContainer getProblemContainer() {
+        return problemContainer;
+    }
+
+    public void setProblemContainer(ProblemContainer problemContainer) {
+        this.problemContainer = problemContainer;
+    }
     //3. define logic of createHeader() and createData()
 
     public void createHeader() {
@@ -91,17 +98,17 @@ public class UtilsFile {
             p.setVertical(split[0].equals("V"));
 
             int tagAmount = Integer.parseInt(split[1]);
-            List<String> tags = new ArrayList<>();
+            Set<String> tags = new HashSet<>();
 
             for (int j = 0; j < tagAmount; j ++){
                 tags.add(split[2 + j]);
                 p.setTags(tags);
+                System.out.print(tags);
             }
 
         }
 
         this.setPhotos(photos);
-
     }
 
 
