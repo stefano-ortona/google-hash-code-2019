@@ -1,6 +1,7 @@
 package com.ortona.stefano.hashcode_2019.model;
 
 import java.util.List;
+import java.util.Set;
 
 public class Photo {
 	int id;
@@ -13,7 +14,8 @@ public class Photo {
 		this.id = id;
 	}
 
-	List<String> tags;
+	Set<String> tags;
+
 	boolean isVertical;
 
 	public long computeScore(Photo other) {
@@ -21,11 +23,11 @@ public class Photo {
 		return 0;
 	}
 
-	public List<String> getTags() {
+	public Set<String> getTags() {
 		return tags;
 	}
 
-	public void setTags(List<String> tags) {
+	public void setTags(Set<String> tags) {
 		this.tags = tags;
 	}
 
