@@ -30,6 +30,7 @@ public class ComputeBestPictureGroups implements IComputeBestPictureGroups {
 
     private List<Photo> getFirstPhotoList(@NotNull List<Photo> allPics) {
         Photo photo = getBestPhotoEvah(allPics);
+        allPics.remove(photo);
         List<Photo> bestPhotoList = getPhotoList(photo.getTags(), allPics, maxNumPhoto - 1);
         bestPhotoList.add(photo);
         return bestPhotoList;
