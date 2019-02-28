@@ -1,17 +1,19 @@
 package com.ortona.stefano.hashcode_2019.logic;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
+import com.ortona.stefano.hashcode_2019.logic.interfaces.IComputeBestPictureGroups;
+import com.ortona.stefano.hashcode_2019.logic.utils.CommonUtils;
 import com.ortona.stefano.hashcode_2019.model.Photo;
+import com.sun.istack.internal.NotNull;
 
-public class ComputeBestPictureGroups {
+public class ComputeBestPictureGroups implements IComputeBestPictureGroups {
 
-    int MAX_NUM_PHOTO = 10;
+    private static int MAX_NUM_PHOTO = 10;
 
-    public List<Photo> getBestGroup(Set<String> tags, List<Photo> allPics) {
+
+    @Override
+    public List<Photo> getBestGroup(Set<String> tags, @NotNull List<Photo> allPics) {
         if (tags == null) {
             return getFirstPhotoList(allPics);
         }
@@ -23,15 +25,26 @@ public class ComputeBestPictureGroups {
      * Internal methods
      */
 
-    private List<Photo> getFirstPhotoList(List<Photo> allPics) {
+    private List<Photo> getFirstPhotoList(@NotNull List<Photo> allPics) {
         Photo photo = getBestPhotoEvah(allPics);
-        //getPhotoList()
-
-        return null;
+        List<Photo> bestPhotoList = getPhotoList(photo.getTags(), allPics, MAX_NUM_PHOTO - 1);
+        bestPhotoList.add(photo);
+        return bestPhotoList;
     }
 
-    private List<Photo> getPhotoList(Set<String> tags, List<Photo> allPics, int tot) {
-        return null;
+    private List<Photo> getPhotoList(@NotNull Set<String> tags, @NotNull List<Photo> allPics, int tot) {
+        List<Photo> ordered = new ArrayList<>(allPics);
+        ordered.sort((o1, o2) -> {
+            long res = o2.computeScore(tags) - o1.computeScore(tags);
+            if (res < 0) {
+                return -1;
+            } else if (res > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+        return CommonUtils.subListSafe(ordered, tot);
     }
 
 

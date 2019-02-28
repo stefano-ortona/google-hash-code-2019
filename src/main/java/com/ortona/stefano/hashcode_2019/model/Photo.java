@@ -18,7 +18,7 @@ public class Photo {
 
 	boolean isVertical;
 
-	public long computeScore(Photo other) {
+	public long computeScore(Set<String> tags) {
 		// TODO
 		return 0;
 	}
