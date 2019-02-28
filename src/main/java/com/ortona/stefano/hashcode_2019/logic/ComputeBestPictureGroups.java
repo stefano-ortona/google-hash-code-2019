@@ -21,10 +21,18 @@ public class ComputeBestPictureGroups implements IComputeBestPictureGroups {
 
 	@Override
 	public List<Photo> getBestGroup(Set<String> tags, @NotNull List<Photo> allPics) {
+		List<Photo> bestPhotoList = null;
 		if ((tags == null) || tags.isEmpty()) {
-			return getFirstPhotoList(allPics);
+			bestPhotoList = getFirstPhotoList(allPics);
+		} else {
+			bestPhotoList = getPhotoList(tags, allPics, maxNumPhoto);
 		}
-		return getPhotoList(tags, allPics, maxNumPhoto);
+		final Stream<Photo> outputStream = bestPhotoList.stream().filter(Photo::isVertical);
+		final long nVertical = outputStream.count();
+		if (((nVertical % 2) != 0) && (nVertical > 0)) {
+			bestPhotoList.remove(bestPhotoList.stream().filter(Photo::isVertical).findFirst().get());
+		}
+		return bestPhotoList;
 	}
 
 	/*
@@ -53,12 +61,6 @@ public class ComputeBestPictureGroups implements IComputeBestPictureGroups {
 			}
 		}
 		final List<Photo> output = new ArrayList<>();
-
-		final Stream<Photo> outputStream = output.stream().filter(Photo::isVertical);
-		final int nVertical = outputStream.toArray().length;
-		if (((nVertical % 2) != 0) && (nVertical > 0)) {
-			output.remove(outputStream.findFirst().get());
-		}
 		target.forEach(pS -> output.add(pS.p));
 		return output;
 	}
