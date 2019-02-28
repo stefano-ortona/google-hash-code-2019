@@ -3,6 +3,16 @@ package com.ortona.stefano.hashcode_2019.model;
 import java.util.List;
 
 public class Photo {
+	int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	List<String> tags;
 	boolean isVertical;
 
