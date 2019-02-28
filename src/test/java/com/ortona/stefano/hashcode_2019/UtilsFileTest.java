@@ -99,6 +99,11 @@ public class UtilsFileTest {
 
     }
 
+    @Test
+    public void testPhotoAmount() {
+        Assert.assertEquals(fr.getPhotoAmount(), photosExample.size());
+    }
+
 
     // utils
 
