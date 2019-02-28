@@ -35,7 +35,7 @@ public class ProblemSolver {
 	public SolutionContainer process(ProblemContainer problem) {
 		final SolutionContainer sCont = new SolutionContainer();
 
-		final Set<String> curTags = null;
+		Set<String> curTags = null;
 		final List<Slide> curList = new ArrayList<>();
 		final boolean isAtTheEnd = true;
 		while (!problem.getAllPhotos().isEmpty()) {
@@ -44,7 +44,10 @@ public class ProblemSolver {
 			if (isAtTheEnd) {
 				curList.addAll(nextSlides);
 			}
+			curTags = nextSlides.get(nextSlides.size() - 1).getTags();
+			problem.getAllPhotos().removeAll(bestNextPhotos);
 		}
+		sCont.setAllSlides(curList);
 		return sCont;
 	}
 
