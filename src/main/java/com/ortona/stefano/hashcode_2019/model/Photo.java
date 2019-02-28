@@ -42,4 +42,13 @@ public class Photo {
         this.isVertical = isVertical;
     }
 
+    @Override
+    public String toString() {
+        return "Photo{" +
+                "id=" + id +
+                ", tags=" + tags +
+                ", isVertical=" + isVertical +
+                '}';
+    }
+
 }
