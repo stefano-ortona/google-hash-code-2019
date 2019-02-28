@@ -9,6 +9,9 @@ import com.ortona.stefano.hashcode_2019.logic.ProblemSolver;
 import com.ortona.stefano.hashcode_2019.model.ProblemContainer;
 import com.ortona.stefano.hashcode_2019.model.SolutionContainer;
 
+/**
+ *
+ */
 public class ProblemSolverTest {
 
 	private final static ProblemSolver SOLVER = new ProblemSolver();
