@@ -24,7 +24,7 @@ public class ProblemSolver {
 	IComputeBestPictureGroups bestPicGroup;
 	ComputeNextBestSlideGroup bestSlide = new ComputeNextBestSlideGroup();
 
-	int DEF_GROUP_SIZE = 10;
+	int DEF_GROUP_SIZE = 6;
 
 	public ProblemSolver(int maxGroupSize) {
 		bestPicGroup = new ComputeBestPictureGroups(maxGroupSize);
