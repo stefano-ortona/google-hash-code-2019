@@ -4,32 +4,32 @@ import java.util.List;
 
 public class SolutionContainer {
 
-	List<Slide> allSlides;
+    List<Slide> allSlides;
 
-	public double score;
+    public double score;
 
-	public double getScore() {
-		return score;
-	}
+    public double getScore() {
+        return score;
+    }
 
-	public void setScore(double score) {
-		this.score = score;
-	}
+    public void setScore(double score) {
+        this.score = score;
+    }
 
-	public List<Slide> getAllSlides() {
-		return allSlides;
-	}
+    public List<Slide> getAllSlides() {
+        return allSlides;
+    }
 
-	public void setAllSlides(List<Slide> allSlides) {
-		this.allSlides = allSlides;
-	}
-	
-	@Override
-  public String toString() {
-		String string = "" + getAllSlides().size();
-		for(Slide s: getAllSlides()) {
-			string += s.toString() + "\n";
-		}
-		return string;
-  }
+    public void setAllSlides(List<Slide> allSlides) {
+        this.allSlides = allSlides;
+    }
+
+    @Override
+    public String toString() {
+        String string = "" + getAllSlides().size() + "\n";
+        for (Slide s : getAllSlides()) {
+            string += s.toString() + "\n";
+        }
+        return string;
+    }
 }
