@@ -23,5 +23,13 @@ public class SolutionContainer {
 	public void setAllSlides(List<Slide> allSlides) {
 		this.allSlides = allSlides;
 	}
-
+	
+	@Override
+  public String toString() {
+		String string = "" + getAllSlides().size();
+		for(Slide s: getAllSlides()) {
+			string += s.toString() + "\n";
+		}
+		return string;
+  }
 }
