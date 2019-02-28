@@ -27,7 +27,8 @@ public class ProblemSolverTest {
 
 	@Test
 	public void firstTest() {
-		LOG.info("This is a logger print! by Gio");
+		LOG.info("----------------------");
+		LOG.info("First test is starting");
 		// TAGS MODEL
 		Set<String> tagsPhoto0 = new HashSet<String>();
 		tagsPhoto0.add("t0");
@@ -61,11 +62,218 @@ public class ProblemSolverTest {
 		// ASSERTS
 		Assert.assertTrue(0. == sC.getScore());
 		int counter = 0;
+		Assert.assertEquals(1, sC.getAllSlides().size());
     for (Slide slide: sC.getAllSlides()) {
     	LOG.info(counter + " Slide: " + slide.toString());
       counter++;
-      Assert.assertEquals("0 1", slide.toString());
+      if(counter == 0) {
+      	Assert.assertEquals("0 1", slide.toString());
+      }
+    }
+	}
+	
+	@Test
+	public void secondTest() {
+		LOG.info("----------------------");
+		LOG.info("Second test is starting");
+		
+		// TAGS MODEL
+		Set<String> tagsPhoto0 = new HashSet<String>();
+		tagsPhoto0.add("t0");
+		tagsPhoto0.add("t1");
+		
+		Set<String> tagsPhoto1 = new HashSet<String>();
+		tagsPhoto1.add("t1");
+		
+		// PHOTOS MODEL
+	  Photo photo0 = new Photo();
+	  photo0.setId(0);
+	  photo0.setTags(tagsPhoto0);
+		
+		Photo photo1 = new Photo();
+		photo1.setId(1);
+		photo1.setTags(tagsPhoto1);
+		photo1.setVertical(true);
+		
+		// ALLPHOTOS MODEL
+		List<Photo> allPhotos = new ArrayList<Photo>();
+		allPhotos.add(photo0);
+		allPhotos.add(photo1);
+		
+		// PROBLEM CONTAINER
+		final ProblemContainer pC = new ProblemContainer();
+		pC.setAllPhotos(allPhotos);
+		
+		// SOLUTION CONTAINER 
+		final SolutionContainer sC = SOLVER.process(pC);
+		
+		// ASSERTS
+		Assert.assertTrue(0. == sC.getScore());
+		int counter = 0;
+		Assert.assertEquals(2, sC.getAllSlides().size());
+    for (Slide slide: sC.getAllSlides()) {
+    	LOG.info(counter + " Slide: " + slide.toString());
+      counter++;
+      if(counter == 0) {
+      	Assert.assertEquals("0", slide.toString());
+      }
+      if(counter == 1) {
+      	Assert.assertEquals("1", slide.toString());
+      }
+    }
+	}
+	
+	@Test
+	public void thirdTest() {
+		LOG.info("----------------------");
+		LOG.info("Third test is starting");
+		
+		// TAGS MODEL
+		Set<String> tagsPhoto0 = new HashSet<String>();
+		tagsPhoto0.add("cat");
+		tagsPhoto0.add("beach");
+		tagsPhoto0.add("sun");
+		
+		Set<String> tagsPhoto1 = new HashSet<String>();
+		tagsPhoto1.add("selfie");
+		tagsPhoto1.add("smile");
+		
+		Set<String> tagsPhoto2 = new HashSet<String>();
+		tagsPhoto2.add("garden");
+		tagsPhoto2.add("selfie");
+		
+		Set<String> tagsPhoto3 = new HashSet<String>();
+		tagsPhoto3.add("garden");
+		tagsPhoto3.add("cat");		
+		
+		// PHOTOS MODEL
+	  Photo photo0 = new Photo();
+	  photo0.setId(0);
+	  photo0.setTags(tagsPhoto0);
+		
+		Photo photo1 = new Photo();
+		photo1.setId(1);
+		photo1.setTags(tagsPhoto1);
+		photo1.setVertical(true);
+		
+		Photo photo2 = new Photo();
+		photo2.setId(2);
+		photo2.setTags(tagsPhoto2);
+		photo2.setVertical(true);
+		
+		Photo photo3 = new Photo();
+		photo3.setId(3);
+		photo3.setTags(tagsPhoto3);
+
+		// ALLPHOTOS MODEL
+		List<Photo> allPhotos = new ArrayList<Photo>();
+		allPhotos.add(photo0);
+		allPhotos.add(photo1);
+		allPhotos.add(photo2);
+		allPhotos.add(photo3);
+		
+		// PROBLEM CONTAINER
+		final ProblemContainer pC = new ProblemContainer();
+		pC.setAllPhotos(allPhotos);
+		
+		// SOLUTION CONTAINER 
+		final SolutionContainer sC = SOLVER.process(pC);
+		
+		// ASSERTS
+		Assert.assertTrue(2. == sC.getScore());
+		int counter = 0;
+		Assert.assertEquals(4, sC.getAllSlides().size());
+		Assert.assertEquals("0\n3\n1 2", sC.toString());
+    for (Slide slide: sC.getAllSlides()) {
+    	LOG.info(counter + " Slide: " + slide.toString());
+      counter++;
+      if(counter == 0) {
+      	Assert.assertEquals("0", slide.toString());
+      }
+      if(counter == 1) {
+      	Assert.assertEquals("3", slide.toString());
+      }
+      if(counter == 2) {
+      	Assert.assertEquals("1 2", slide.toString());
+      }
+    }
+	}
+	
+	@Test
+	public void fourthTest() {
+		LOG.info("----------------------");
+		LOG.info("Fourth test is starting");
+		
+		// TAGS MODEL
+		Set<String> tagsPhoto0 = new HashSet<String>();
+		tagsPhoto0.add("cat");
+		tagsPhoto0.add("beach");
+		tagsPhoto0.add("sun");
+		
+		Set<String> tagsPhoto1 = new HashSet<String>();
+		tagsPhoto1.add("selfie");
+		tagsPhoto1.add("smile");
+		
+		Set<String> tagsPhoto2 = new HashSet<String>();
+		tagsPhoto2.add("garden");
+		tagsPhoto2.add("selfie");
+		
+		Set<String> tagsPhoto3 = new HashSet<String>();
+		tagsPhoto3.add("garden");
+		tagsPhoto3.add("cat");		
+		
+		// PHOTOS MODEL
+	  Photo photo0 = new Photo();
+	  photo0.setId(0);
+	  photo0.setTags(tagsPhoto0);
+		
+		Photo photo1 = new Photo();
+		photo1.setId(1);
+		photo1.setTags(tagsPhoto1);
+		photo1.setVertical(true);
+		
+		Photo photo2 = new Photo();
+		photo2.setId(2);
+		photo2.setTags(tagsPhoto2);
+		photo2.setVertical(true);
+		
+		Photo photo3 = new Photo();
+		photo3.setId(3);
+		photo3.setTags(tagsPhoto3);
+
+		// ALLPHOTOS MODEL
+		List<Photo> allPhotos = new ArrayList<Photo>();
+		allPhotos.add(photo0);
+		allPhotos.add(photo1);
+		allPhotos.add(photo2);
+		allPhotos.add(photo3);
+		
+		// PROBLEM CONTAINER
+		final ProblemContainer pC = new ProblemContainer();
+		pC.setAllPhotos(allPhotos);
+		
+		// SOLUTION CONTAINER 
+		ProblemSolver solver = new ProblemSolver(2);
+		final SolutionContainer sC = solver.process(pC);
+		
+		// ASSERTS
+		Assert.assertTrue(2. == sC.getScore());
+		int counter = 0;
+		Assert.assertEquals(4, sC.getAllSlides().size());
+    for (Slide slide: sC.getAllSlides()) {
+    	LOG.info(counter + " Slide: " + slide.toString());
+      counter++;
+      if(counter == 0) {
+      	Assert.assertEquals("0", slide.toString());
+      }
+      if(counter == 1) {
+      	Assert.assertEquals("3", slide.toString());
+      }
+      if(counter == 2) {
+      	Assert.assertEquals("1 2", slide.toString());
+      }
     }
 	}
 
+	
 }
