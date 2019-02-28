@@ -83,25 +83,18 @@ public class ComputeNextBestSlideGroup {
 	}
 
 	private void computeNextSolution(String curSol, List<String> allSolutions, List<Photo> availPhotos) {
-		if (availPhotos.isEmpty()) {
+		if (availPhotos.isEmpty() && curSol.endsWith("-")) {
 			allSolutions.add(curSol);
 		}
 		for (final Photo p : availPhotos) {
 			if (p.isVertical()) {
-				// if the one before is vertical, try to unifiy it
-				if (!curSol.isEmpty() && (curSol.charAt(curSol.length() - 1) != '-')) {
+				// if the one before is vertical, unifiy it
+				if (!curSol.isEmpty() && (curSol.charAt(curSol.length() - 1) == 'P')) {
 					// unify it and end the slide
 					final String newSol = curSol + p.getId() + "-";
 					final List<Photo> newPhotos = Lists.newArrayList(availPhotos);
 					newPhotos.remove(p);
 					computeNextSolution(newSol, allSolutions, newPhotos);
-
-					// unify the previous slide without adding the vertical photo, and keep going
-					final String newSolSecond = curSol + "-" + p.getId();
-					final List<Photo> newPhotosSecond = Lists.newArrayList(availPhotos);
-					newPhotosSecond.remove(p);
-					computeNextSolution(newSolSecond, allSolutions, newPhotosSecond);
-
 				} else {
 					// if it is first photo, or a new slide, just attach it
 					final String newSol = curSol + p.getId() + "P";
@@ -114,7 +107,8 @@ public class ComputeNextBestSlideGroup {
 				String newSol = curSol;
 				// if it is horizontal, can only be alone
 				if (!curSol.isEmpty() && (curSol.charAt(curSol.length() - 1) != '-')) {
-					newSol += "-";
+					// cannot put an horizontal here;
+					continue;
 				}
 				newSol += p.getId() + "-";
 				final List<Photo> newPhotos = Lists.newArrayList(availPhotos);
