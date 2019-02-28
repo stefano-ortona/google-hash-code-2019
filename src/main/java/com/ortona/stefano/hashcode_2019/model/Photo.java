@@ -20,6 +20,7 @@ public class Photo {
 
 	public long computeScore(Set<String> tags) {
 		// TODO
+
 		return 0;
 	}
 

@@ -14,7 +14,7 @@ public class ComputeBestPictureGroups implements IComputeBestPictureGroups {
 
     @Override
     public List<Photo> getBestGroup(Set<String> tags, @NotNull List<Photo> allPics) {
-        if (tags == null) {
+        if (tags == null || tags.isEmpty()) {
             return getFirstPhotoList(allPics);
         }
         return getPhotoList(tags, allPics, MAX_NUM_PHOTO);
