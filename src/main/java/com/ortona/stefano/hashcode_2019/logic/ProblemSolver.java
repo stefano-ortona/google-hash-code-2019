@@ -1,35 +1,51 @@
 package com.ortona.stefano.hashcode_2019.logic;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.ortona.stefano.hashcode_2019.logic.interfaces.IComputeBestPictureGroups;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.ortona.stefano.hashcode_2019.logic.interfaces.IComputeBestPictureGroups;
 import com.ortona.stefano.hashcode_2019.model.Photo;
 import com.ortona.stefano.hashcode_2019.model.ProblemContainer;
+import com.ortona.stefano.hashcode_2019.model.Slide;
 import com.ortona.stefano.hashcode_2019.model.SolutionContainer;
 
 /**
  * @author stefano
  */
 public class ProblemSolver {
-    Logger LOG = LoggerFactory.getLogger(getClass());
+	Logger LOG = LoggerFactory.getLogger(getClass());
 
-    IComputeBestPictureGroups bestPicGroup = new ComputeBestPictureGroups(10);
+	IComputeBestPictureGroups bestPicGroup;
+	ComputeNextBestSlideGroup bestSlide = new ComputeNextBestSlideGroup();
 
-    public SolutionContainer process(ProblemContainer problem) {
-        final SolutionContainer sCont = new SolutionContainer();
+	int DEF_GROUP_SIZE = 10;
 
-        while (!problem.getAllPhotos().isEmpty()) {
-            final Set<String> tags = new HashSet<>();
-            final List<Photo> bestNextPhotos = bestPicGroup.getBestGroup(tags, problem.getAllPhotos());
-            // optimized for bestNextPhotos and attach to the global sequence
-            // get beginning or end of the global sequence ??
-        }
-        return sCont;
-    }
+	public ProblemSolver(int maxGroupSize) {
+		bestPicGroup = new ComputeBestPictureGroups(maxGroupSize);
+	}
+
+	public ProblemSolver() {
+		bestPicGroup = new ComputeBestPictureGroups(DEF_GROUP_SIZE);
+	}
+
+	public SolutionContainer process(ProblemContainer problem) {
+		final SolutionContainer sCont = new SolutionContainer();
+
+		final Set<String> curTags = null;
+		final List<Slide> curList = new ArrayList<>();
+		final boolean isAtTheEnd = true;
+		while (!problem.getAllPhotos().isEmpty()) {
+			final List<Photo> bestNextPhotos = bestPicGroup.getBestGroup(curTags, problem.getAllPhotos());
+			final List<Slide> nextSlides = bestSlide.nextBestGroup(bestNextPhotos, curTags);
+			if (isAtTheEnd) {
+				curList.addAll(nextSlides);
+			}
+		}
+		return sCont;
+	}
 
 }
