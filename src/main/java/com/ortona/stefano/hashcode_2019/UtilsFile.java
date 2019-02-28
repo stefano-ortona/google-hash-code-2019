@@ -102,9 +102,10 @@ public class UtilsFile {
 
             for (int j = 0; j < tagAmount; j ++){
                 tags.add(split[2 + j]);
-                p.setTags(tags);
-                System.out.print(tags);
             }
+            //System.out.println(tags);
+            p.setTags(tags);
+            photos.add(p);
 
         }
 
@@ -141,6 +142,10 @@ public class UtilsFile {
             createData();
 
             createPhotos();
+
+            problemContainer= new ProblemContainer();
+
+            problemContainer.setAllPhotos(this.getPhotos());
 
         } catch (Exception e) {
             e.printStackTrace();
