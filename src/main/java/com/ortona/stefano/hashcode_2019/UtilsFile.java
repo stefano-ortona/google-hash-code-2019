@@ -23,7 +23,7 @@ public class UtilsFile {
     private int[] header;
     private char[][] data;
     private int photoAmount;
-   private List<Photo> photos;
+    private List<Photo> photos;
 
     // 2. generate setters and getters for header and data
     public void setHeader(int[] header) {
@@ -78,8 +78,31 @@ public class UtilsFile {
         this.setData(matrix);
     }
 
+    public void createPhotos() {
 
+        photos = new ArrayList<>();
 
+        for (int i= 0 ; i < this.file.length - 1; i++){
+            Photo p = new Photo();
+            p.setId(i);
+            String[] split = splitString(this.file[ i + 1], " ");
+
+            //H 3 cat beach sun
+            p.setVertical(split[0].equals("V"));
+
+            int tagAmount = Integer.parseInt(split[1]);
+            List<String> tags = new ArrayList<>();
+
+            for (int j = 0; j < tagAmount; j ++){
+                tags.add(split[2 + j]);
+                p.setTags(tags);
+            }
+
+        }
+
+        this.setPhotos(photos);
+
+    }
 
 
     // ====== Do not change below here
@@ -110,7 +133,7 @@ public class UtilsFile {
 
             createData();
 
-            //createPhotos();
+            createPhotos();
 
         } catch (Exception e) {
             e.printStackTrace();

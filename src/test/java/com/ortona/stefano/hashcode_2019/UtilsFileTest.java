@@ -16,14 +16,15 @@ public class UtilsFileTest {
     private final String filePathExample = "a_example.txt";
     private UtilsFile fr = new UtilsFile(filePathExample);
     private int[] headerExample = fr.getHeader();
-    private int[] actualHeaderExample = new int[]{4};
+    private int PHOTO_AMOUNT = 4;
+    private int[] actualHeaderExample = new int[]{PHOTO_AMOUNT};
 
     // Example.in file
 
     @Test
     public void testHeaderExample() {
-        Assert.assertEquals(true, true);
-
+        testHeader(headerExample, actualHeaderExample);
+        Assert.assertEquals(PHOTO_AMOUNT, fr.getPhotoAmount());
     }
 
     // utils
