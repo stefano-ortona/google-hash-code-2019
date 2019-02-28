@@ -35,5 +35,14 @@ public class Slide {
 	public void setSecond(Photo second) {
 		this.second = second;
 	}
+	
+	@Override
+  public String toString() {
+		if(getSecond() != null) {
+			return getFirst().getId() + " " + getSecond().getId();
+		} else {
+			return Integer.toString(getFirst().getId());
+		}
+  }
 
 }
