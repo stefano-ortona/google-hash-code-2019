@@ -37,16 +37,17 @@ public class ComputeNextBestSlideGroup {
 			if (onePart.isEmpty()) {
 				continue;
 			}
-			if (onePart.length() > 2) {
+			final String[] allPhotos = onePart.split("P");
+			if (allPhotos.length > 2) {
 				throw new RuntimeException("Too long!");
 			}
 			final Slide curSlide = new Slide();
-			final Photo firstP = allPics.stream().filter(p -> p.getId() == Integer.parseInt(onePart.charAt(0) + ""))
+			final Photo firstP = allPics.stream().filter(p -> p.getId() == Integer.parseInt(allPhotos[0] + ""))
 					.findFirst().get();
 			curSlide.addPhoto(firstP);
-			if (onePart.length() == 2) {
-				final Photo secondP = allPics.stream()
-						.filter(p -> p.getId() == Integer.parseInt(onePart.charAt(1) + "")).findFirst().get();
+			if (allPhotos.length == 2) {
+				final Photo secondP = allPics.stream().filter(p -> p.getId() == Integer.parseInt(allPhotos[1] + ""))
+						.findFirst().get();
 				curSlide.addPhoto(secondP);
 			}
 			nextSlides.add(curSlide);
@@ -62,16 +63,17 @@ public class ComputeNextBestSlideGroup {
 			if (oneSlide.isEmpty()) {
 				continue;
 			}
-			if (oneSlide.length() > 2) {
+			final String[] allPhotos = oneSlide.split("P");
+			if (allPhotos.length > 2) {
 				throw new RuntimeException("Too long!");
 			}
 			final Set<String> allTags = new HashSet<>();
-			final Photo first = allPics.stream().filter(p -> p.getId() == Integer.parseInt(oneSlide.charAt(0) + ""))
+			final Photo first = allPics.stream().filter(p -> p.getId() == Integer.parseInt(allPhotos[0] + ""))
 					.findFirst().get();
 			allTags.addAll(first.getTags());
-			if (oneSlide.length() == 2) {
-				final Photo second = allPics.stream()
-						.filter(p -> p.getId() == Integer.parseInt(oneSlide.charAt(1) + "")).findFirst().get();
+			if (allPhotos.length == 2) {
+				final Photo second = allPics.stream().filter(p -> p.getId() == Integer.parseInt(allPhotos[1] + ""))
+						.findFirst().get();
 				allTags.addAll(second.getTags());
 			}
 			totScore += CommonUtils.computeScore(curTags, allTags);
@@ -91,7 +93,7 @@ public class ComputeNextBestSlideGroup {
 					// unify it and end the slide
 					final String newSol = curSol + p.getId() + "-";
 					final List<Photo> newPhotos = Lists.newArrayList(availPhotos);
-					availPhotos.remove(p);
+					newPhotos.remove(p);
 					computeNextSolution(newSol, allSolutions, newPhotos);
 
 					// unify the previous slide without adding the vertical photo, and keep going
@@ -102,9 +104,9 @@ public class ComputeNextBestSlideGroup {
 
 				} else {
 					// if it is first photo, or a new slide, just attach it
-					final String newSol = curSol + p.getId();
+					final String newSol = curSol + p.getId() + "P";
 					final List<Photo> newPhotos = Lists.newArrayList(availPhotos);
-					availPhotos.remove(p);
+					newPhotos.remove(p);
 					computeNextSolution(newSol, allSolutions, newPhotos);
 				}
 
@@ -116,7 +118,7 @@ public class ComputeNextBestSlideGroup {
 				}
 				newSol += p.getId() + "-";
 				final List<Photo> newPhotos = Lists.newArrayList(availPhotos);
-				availPhotos.remove(p);
+				newPhotos.remove(p);
 				computeNextSolution(newSol, allSolutions, newPhotos);
 			}
 		}

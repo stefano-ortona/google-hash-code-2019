@@ -18,14 +18,14 @@ public class Main {
 	static Logger LOG = LoggerFactory.getLogger(Main.class);
 
 	public static void main(String[] args) throws Exception {
-		final String inputFile1 = "";
-		final String inputFile2 = "";
+		final String inputFile1 = "a_example.txt";
+		final String inputFile2 = "b_lovely_landscapes.txt";
 		final String inputFile3 = "";
 		final String inputFile4 = "";
 
 		final List<String> inputFiles = new LinkedList<>();
-		inputFiles.add(inputFile1);
-		// inputFiles.add(inputFile2);
+		// inputFiles.add(inputFile1);
+		inputFiles.add(inputFile2);
 		// inputFiles.add(inputFile3);
 		// inputFiles.add(inputFile4);
 
