@@ -180,7 +180,7 @@ public class ProblemSolverTest {
 		final SolutionContainer sC = SOLVER.process(pC);
 		
 		// ASSERTS
-		Assert.assertTrue(0. == sC.getScore());
+		Assert.assertTrue(2. == sC.getScore());
 		int counter = 0;
 		Assert.assertEquals(4, sC.getAllSlides().size());
 		Assert.assertEquals("0\n3\n1 2", sC.toString());
@@ -257,7 +257,7 @@ public class ProblemSolverTest {
 		final SolutionContainer sC = solver.process(pC);
 		
 		// ASSERTS
-		Assert.assertTrue(0. == sC.getScore());
+		Assert.assertTrue(2. == sC.getScore());
 		int counter = 0;
 		Assert.assertEquals(4, sC.getAllSlides().size());
     for (Slide slide: sC.getAllSlides()) {
