@@ -20,12 +20,12 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 		final String inputFile1 = "a_example.txt";
 		final String inputFile2 = "b_lovely_landscapes.txt";
-		final String inputFile3 = "";
-		final String inputFile4 = "";
+		final String inputFile3 = "c_memorable_moments.txt";
+		final String inputFile4 = "d_pet_pictures.txt";
 
 		final List<String> inputFiles = new LinkedList<>();
 		// inputFiles.add(inputFile1);
-		inputFiles.add(inputFile2);
+		 inputFiles.add(inputFile2);
 		// inputFiles.add(inputFile3);
 		// inputFiles.add(inputFile4);
 
