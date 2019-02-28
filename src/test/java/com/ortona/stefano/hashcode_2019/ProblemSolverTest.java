@@ -20,7 +20,7 @@ public class ProblemSolverTest {
 
 	@Test
 	public void firstTest() {
-		LOG.info("This is a logger print!");
+		LOG.info("This is a logger print! by Gio");
 		final ProblemContainer pC = new ProblemContainer();
 		final SolutionContainer sC = SOLVER.process(pC);
 		Assert.assertTrue(0. == sC.getScore());
