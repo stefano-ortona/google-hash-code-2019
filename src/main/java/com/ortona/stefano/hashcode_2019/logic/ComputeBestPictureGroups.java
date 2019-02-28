@@ -9,15 +9,18 @@ import com.sun.istack.internal.NotNull;
 
 public class ComputeBestPictureGroups implements IComputeBestPictureGroups {
 
-    private static int MAX_NUM_PHOTO = 10;
+    private final int maxNumPhoto;
 
+    public ComputeBestPictureGroups(int maxNumPhoto) {
+        this.maxNumPhoto = maxNumPhoto;
+    }
 
     @Override
     public List<Photo> getBestGroup(Set<String> tags, @NotNull List<Photo> allPics) {
         if (tags == null || tags.isEmpty()) {
             return getFirstPhotoList(allPics);
         }
-        return getPhotoList(tags, allPics, MAX_NUM_PHOTO);
+        return getPhotoList(tags, allPics, maxNumPhoto);
     }
 
 
@@ -27,7 +30,7 @@ public class ComputeBestPictureGroups implements IComputeBestPictureGroups {
 
     private List<Photo> getFirstPhotoList(@NotNull List<Photo> allPics) {
         Photo photo = getBestPhotoEvah(allPics);
-        List<Photo> bestPhotoList = getPhotoList(photo.getTags(), allPics, MAX_NUM_PHOTO - 1);
+        List<Photo> bestPhotoList = getPhotoList(photo.getTags(), allPics, maxNumPhoto - 1);
         bestPhotoList.add(photo);
         return bestPhotoList;
     }

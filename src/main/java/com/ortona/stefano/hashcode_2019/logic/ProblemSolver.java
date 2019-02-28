@@ -18,14 +18,14 @@ import com.ortona.stefano.hashcode_2019.model.SolutionContainer;
 public class ProblemSolver {
     Logger LOG = LoggerFactory.getLogger(getClass());
 
-    IComputeBestPictureGroups bestPicGRoup = new ComputeBestPictureGroups();
+    IComputeBestPictureGroups bestPicGroup = new ComputeBestPictureGroups(10);
 
     public SolutionContainer process(ProblemContainer problem) {
         final SolutionContainer sCont = new SolutionContainer();
 
         while (!problem.getAllPhotos().isEmpty()) {
             final Set<String> tags = new HashSet<>();
-            final List<Photo> bestNextPhotos = bestPicGRoup.getBestGroup(tags, problem.getAllPhotos());
+            final List<Photo> bestNextPhotos = bestPicGroup.getBestGroup(tags, problem.getAllPhotos());
             // optimized for bestNextPhotos and attach to the global sequence
             // get beginning or end of the global sequence ??
         }
