@@ -48,6 +48,8 @@ public class ComputeBestPictureGroups implements IComputeBestPictureGroups {
                 return 0;
             }
         });
+
+
         return CommonUtils.subListSafe(ordered, tot);
     }
 
@@ -57,8 +59,15 @@ public class ComputeBestPictureGroups implements IComputeBestPictureGroups {
      */
 
     private Photo getBestPhotoEvah(List<Photo> allPics) {
-        allPics.sort((o1, o2) -> o2.getTags().size() - o1.getTags().size());
-        return allPics.get(0); // >> tags
+        Photo bestPhoto = null;
+        int tagsSize = 0;
+        for (Photo photo : allPics) {
+            if (photo.getTags().size() > tagsSize) {
+                bestPhoto = photo;
+                tagsSize = photo.getTags().size();
+            }
+        }
+        return bestPhoto;
     }
 
 }
