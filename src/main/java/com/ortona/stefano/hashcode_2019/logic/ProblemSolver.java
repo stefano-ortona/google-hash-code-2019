@@ -24,7 +24,7 @@ public class ProblemSolver {
 	IComputeBestPictureGroups bestPicGroup;
 	ComputeNextBestSlideGroup bestSlide = new ComputeNextBestSlideGroup();
 
-	int DEF_GROUP_SIZE = 5;
+	int DEF_GROUP_SIZE = 10;
 
 	public ProblemSolver(int maxGroupSize) {
 		bestPicGroup = new ComputeBestPictureGroups(maxGroupSize);
@@ -44,7 +44,6 @@ public class ProblemSolver {
 		while (!problem.getAllPhotos().isEmpty()) {
 			LOG.info("Iteration number '{}', '{}' photos remaining", i, problem.getAllPhotos().size());
 			final List<Photo> bestNextPhotos = bestPicGroup.getBestGroup(curTags, problem.getAllPhotos());
-			LOG.info("Computing next best slide");
 			final List<Slide> nextSlides = bestSlide.nextBestGroup(bestNextPhotos, curTags);
 			if (isAtTheEnd) {
 				curList.addAll(nextSlides);
