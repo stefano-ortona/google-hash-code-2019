@@ -15,7 +15,7 @@ public class ComputeNextBestSlideGroup {
 		return null;
 	}
 
-	private void computeNextSolution(List<Slide> curSol, List<List<Slide>> allSolutions, List<Photo> availPhotos) {
+	private void computeNextSolution(String curSol, List<String> allSolutions, List<Photo> availPhotos) {
 		if (availPhotos.isEmpty()) {
 			return;
 		}
